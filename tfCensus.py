@@ -91,3 +91,18 @@ m.fit(input_fn=train_input_fn, steps=200)
 results = m.evaluate(input_fn=eval_input_fn, steps=1)
 for key in sorted(results):
     print "%s: %s" % (key, results[key])
+
+m = tf.contrib.learn.LinearClassifier(feature_columns=[
+  gender, native_country, education, occupation, workclass, marital_status, race,
+  age_buckets, education_x_occupation, age_buckets_x_race_x_occupation],
+  optimizer=tf.train.FtrlOptimizer(
+    learning_rate=0.1,
+    l1_regularization_strength=1.0,
+    l2_regularization_strength=1.0),
+  model_dir=model_dir)
+
+m.fit(input_fn=train_input_fn, steps=200)
+
+results = m.evaluate(input_fn=eval_input_fn, steps=1)
+for key in sorted(results):
+    print "%s: %s" % (key, results[key])
