@@ -76,3 +76,12 @@ hours_per_week = tf.contrib.layers.real_valued_column("hours_per_week")
 age_buckets = tf.contrib.layers.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
 
 education_x_occupation = tf.contrib.layers.crossed_column([education, occupation], hash_bucket_size=int(1e4))
+
+age_buckets_x_race_x_occupation = tf.contrib.layers.crossed_column(
+  [age_buckets, race, occupation], hash_bucket_size=int(1e6))
+
+model_dir = tempfile.mkdtemp()
+m = tf.contrib.learn.LinearClassifier(feature_columns=[
+  gender, native_country, education, occupation, workclass, marital_status, race,
+  age_buckets, education_x_occupation, age_buckets_x_race_x_occupation],
+  model_dir=model_dir)
