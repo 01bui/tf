@@ -55,3 +55,14 @@ def train_input_fn():
 
 def eval_input_fn():
   return input_fn(df_test)
+
+gender = tf.contrib.layers.sparse_column_with_keys(
+  column_name="gender", keys=["Female", "Male"])
+education = tf.contrib.layers.sparse_column_with_hash_bucket("education", hash_bucket_size=1000)
+race = tf.contrib.layers.sparse_column_with_keys(column_name="race", keys=[
+  "Amer-Indian-Eskimo", "Asian-Pac-Islander", "Black", "Other", "White"])
+marital_status = tf.contrib.layers.sparse_column_with_hash_bucket("marital_status", hash_bucket_size=100)
+relationship = tf.contrib.layers.sparse_column_with_hash_bucket("relationship", hash_bucket_size=100)
+workclass = tf.contrib.layers.sparse_column_with_hash_bucket("workclass", hash_bucket_size=100)
+occupation = tf.contrib.layers.sparse_column_with_hash_bucket("occupation", hash_bucket_size=1000)
+native_country = tf.contrib.layers.sparse_column_with_hash_bucket("native_country", hash_bucket_size=1000)
