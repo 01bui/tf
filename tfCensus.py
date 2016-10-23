@@ -66,3 +66,11 @@ relationship = tf.contrib.layers.sparse_column_with_hash_bucket("relationship", 
 workclass = tf.contrib.layers.sparse_column_with_hash_bucket("workclass", hash_bucket_size=100)
 occupation = tf.contrib.layers.sparse_column_with_hash_bucket("occupation", hash_bucket_size=1000)
 native_country = tf.contrib.layers.sparse_column_with_hash_bucket("native_country", hash_bucket_size=1000)
+
+ge = tf.contrib.layers.real_valued_column("age")
+education_num = tf.contrib.layers.real_valued_column("education_num")
+capital_gain = tf.contrib.layers.real_valued_column("capital_gain")
+capital_loss = tf.contrib.layers.real_valued_column("capital_loss")
+hours_per_week = tf.contrib.layers.real_valued_column("hours_per_week")
+
+age_buckets = tf.contrib.layers.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
