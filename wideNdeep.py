@@ -95,3 +95,8 @@ def train_input_fn():
 
 def eval_input_fn():
   return input_fn(df_test)
+
+m.fit(input_fn=train_input_fn, steps=200)
+results = m.evaluate(input_fn=eval_input_fn, steps=1)
+for key in sorted(results):
+    print "%s: %s" % (key, results[key])
