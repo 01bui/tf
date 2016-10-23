@@ -24,3 +24,14 @@ wide_columns = [
   tf.contrib.layers.crossed_column([education, occupation], hash_bucket_size=int(1e4)),
   tf.contrib.layers.crossed_column([native_country, occupation], hash_bucket_size=int(1e4)),
   tf.contrib.layers.crossed_column([age_buckets, race, occupation], hash_bucket_size=int(1e6))]
+
+deep_columns = [
+  tf.contrib.layers.embedding_column(workclass, dimension=8),
+  tf.contrib.layers.embedding_column(education, dimension=8),
+  tf.contrib.layers.embedding_column(marital_status, dimension=8),
+  tf.contrib.layers.embedding_column(gender, dimension=8),
+  tf.contrib.layers.embedding_column(relationship, dimension=8),
+  tf.contrib.layers.embedding_column(race, dimension=8),
+  tf.contrib.layers.embedding_column(native_country, dimension=8),
+  tf.contrib.layers.embedding_column(occupation, dimension=8),
+  age, education_num, capital_gain, capital_loss, hours_per_week]
