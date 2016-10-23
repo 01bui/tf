@@ -67,7 +67,7 @@ workclass = tf.contrib.layers.sparse_column_with_hash_bucket("workclass", hash_b
 occupation = tf.contrib.layers.sparse_column_with_hash_bucket("occupation", hash_bucket_size=1000)
 native_country = tf.contrib.layers.sparse_column_with_hash_bucket("native_country", hash_bucket_size=1000)
 
-ge = tf.contrib.layers.real_valued_column("age")
+age = tf.contrib.layers.real_valued_column("age")
 education_num = tf.contrib.layers.real_valued_column("education_num")
 capital_gain = tf.contrib.layers.real_valued_column("capital_gain")
 capital_loss = tf.contrib.layers.real_valued_column("capital_loss")
@@ -85,3 +85,9 @@ m = tf.contrib.learn.LinearClassifier(feature_columns=[
   gender, native_country, education, occupation, workclass, marital_status, race,
   age_buckets, education_x_occupation, age_buckets_x_race_x_occupation],
   model_dir=model_dir)
+
+m.fit(input_fn=train_input_fn, steps=200)
+
+results = m.evaluate(input_fn=eval_input_fn, steps=1)
+for key in sorted(results):
+    print "%s: %s" % (key, results[key])
