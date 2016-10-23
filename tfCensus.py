@@ -74,3 +74,5 @@ capital_loss = tf.contrib.layers.real_valued_column("capital_loss")
 hours_per_week = tf.contrib.layers.real_valued_column("hours_per_week")
 
 age_buckets = tf.contrib.layers.bucketized_column(age, boundaries=[18, 25, 30, 35, 40, 45, 50, 55, 60, 65])
+
+education_x_occupation = tf.contrib.layers.crossed_column([education, occupation], hash_bucket_size=int(1e4))
